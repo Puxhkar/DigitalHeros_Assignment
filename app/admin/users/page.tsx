@@ -4,6 +4,8 @@ import { formatDate } from '@/lib/utils';
 import { Users, CreditCard, Mail, Calendar } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminUsersPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
