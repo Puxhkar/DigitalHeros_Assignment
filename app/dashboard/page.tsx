@@ -4,6 +4,8 @@ import { Trophy, Heart, CreditCard, BarChart2, ArrowRight, TrendingUp, Calendar,
 import Link from 'next/link';
 import { formatDate, formatCurrency } from '@/lib/utils';
 
+export const dynamic = 'force-dynamic';
+
 async function getDashboardData(userId: string) {
   const supabase = await createClient();
 

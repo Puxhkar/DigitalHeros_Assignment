@@ -1,7 +1,8 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
-import { Users, Trophy, Heart, CreditCard, TrendingUp, DollarSign, Star } from 'lucide-react';
-import { formatCurrency } from '@/lib/utils';
+import { Users, Trophy, Heart, CreditCard, TrendingUp, DollarSign } from 'lucide-react';
+
+export const dynamic = 'force-dynamic';
 
 export default async function AdminPage() {
   const supabase = await createClient();
