@@ -19,8 +19,8 @@ export default async function AdminPage() {
 
   const totalUsers = usersRes.count ?? 0;
   const activeSubs = activeSubsRes.count ?? 0;
-  const totalPrizePool = (drawsRes.data ?? []).reduce((sum, d) => sum + (d.pool_amount ?? 0), 0);
-  const totalCharity = (charityRes.data ?? []).reduce((sum, c) => sum + (c.total_raised ?? 0), 0);
+  const totalPrizePool = (drawsRes.data ?? []).reduce((sum: number, d) => sum + (d.pool_amount ?? 0), 0);
+  const totalCharity = (charityRes.data ?? []).reduce((sum: number, c) => sum + (c.total_raised ?? 0), 0);
   const pendingPayouts = (winnersRes.data ?? []).filter((w) => w.payout_status === 'pending').length;
   const totalWinners = (winnersRes.data ?? []).length;
 

@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     }
 
     // Calculate pool (demo prices: monthly = £9, yearly = £79/12 ≈ £6.58/mo)
-    const totalRevenue = activeUsers.reduce((sum, u) => {
+    const totalRevenue = activeUsers.reduce((sum: number, u) => {
       return sum + (u.subscription_plan === 'yearly' ? 79 / 12 : 9);
     }, 0);
     const pool = calculatePrizePool(totalRevenue);
