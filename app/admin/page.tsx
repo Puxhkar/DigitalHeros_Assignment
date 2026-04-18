@@ -19,9 +19,9 @@ export default async function AdminPage() {
 
   const totalUsers = usersRes.count ?? 0;
   const activeSubs = activeSubsRes.count ?? 0;
-  const totalPrizePool = (drawsRes.data ?? []).reduce((sum: number, d) => sum + (d.pool_amount ?? 0), 0);
-  const totalCharity = (charityRes.data ?? []).reduce((sum: number, c) => sum + (c.total_raised ?? 0), 0);
-  const pendingPayouts = (winnersRes.data ?? []).filter((w) => w.payout_status === 'pending').length;
+  const totalPrizePool = (drawsRes.data ?? []).reduce((sum: number, d: any) => sum + (d.pool_amount ?? 0), 0);
+  const totalCharity = (charityRes.data ?? []).reduce((sum: number, c: any) => sum + (c.total_raised ?? 0), 0);
+  const pendingPayouts = (winnersRes.data ?? []).filter((w: any) => w.payout_status === 'pending').length;
   const totalWinners = (winnersRes.data ?? []).length;
 
   const stats = [
@@ -34,7 +34,7 @@ export default async function AdminPage() {
   ];
 
   // Recent users
-  const recentUsers = (usersRes.data ?? []).sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(0, 5);
+  const recentUsers = (usersRes.data ?? []).sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(0, 5);
 
   return (
     <div className="max-w-6xl space-y-8">
