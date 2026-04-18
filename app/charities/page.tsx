@@ -4,6 +4,8 @@ import { createClient } from '@/lib/supabase/server';
 import type { Charity } from '@/types/database';
 import { Search, Globe, Heart, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from 'react';
 
 export const metadata = {
   title: 'Browse Charities',
@@ -31,10 +33,10 @@ export default async function CharitiesPage({
 
   const filtered = params.q
     ? (charities ?? []).filter(
-        (c) =>
-          c.name.toLowerCase().includes(params.q!.toLowerCase()) ||
-          c.description.toLowerCase().includes(params.q!.toLowerCase())
-      )
+      (c: { name: string; description: string; }) =>
+        c.name.toLowerCase().includes(params.q!.toLowerCase()) ||
+        c.description.toLowerCase().includes(params.q!.toLowerCase())
+    )
     : (charities ?? []);
 
   return (
@@ -70,11 +72,10 @@ export default async function CharitiesPage({
                 <a
                   key={cat}
                   href={`/charities?category=${cat}${params?.q ? `&q=${params.q}` : ''}`}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-medium border transition-all duration-200 ${
-                    (params?.category ?? 'All') === cat
+                  className={`px-3.5 py-2 rounded-xl text-xs font-medium border transition-all duration-200 ${(params?.category ?? 'All') === cat
                       ? 'bg-brand-500/20 border-brand-500/40 text-brand-300'
                       : 'border-white/10 text-surface-400 hover:border-white/20 hover:text-white'
-                  }`}
+                    }`}
                 >
                   {cat}
                 </a>
@@ -93,7 +94,7 @@ export default async function CharitiesPage({
             </div>
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {filtered.map((charity) => (
+              {filtered.map((charity: { id: Key | null | undefined; image_url: string | StaticImport; name: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; category: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; description: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; total_raised: number; website_url: string | undefined; }) => (
                 <div
                   key={charity.id}
                   className="group relative overflow-hidden rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 bg-surface-900/80"
@@ -103,7 +104,7 @@ export default async function CharitiesPage({
                     <div className="relative h-44 overflow-hidden">
                       <Image
                         src={charity.image_url}
-                        alt={charity.name}
+                        alt={String(charity.name ?? '')}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />

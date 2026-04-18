@@ -47,7 +47,7 @@ export default function RegisterPage() {
       .from('charities')
       .select('*')
       .eq('is_active', true)
-      .then(({ data }) => {
+      .then(({ data }: { data: any }) => {
         if (data) setCharities(data);
       });
   }, []);
