@@ -4,13 +4,13 @@ import { createServerClient } from '@supabase/ssr';
 export async function proxy(request: NextRequest) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  
+
   // Aggressive mock detection to prevent SDK crashes
-  const isMock = !supabaseUrl || 
-                 !supabaseKey || 
-                 supabaseUrl.includes('your-project') || 
-                 supabaseKey.includes('your-anon-key') ||
-                 supabaseUrl === 'undefined';
+  const isMock = !supabaseUrl ||
+    !supabaseKey ||
+    supabaseUrl.includes('your-project') ||
+    supabaseKey.includes('your-anon-key') ||
+    supabaseUrl === 'undefined';
 
   if (isMock) {
     const mockSession = request.cookies.get('digitalheros_mock_session');
@@ -40,7 +40,7 @@ export async function proxy(request: NextRequest) {
           getAll() {
             return request.cookies.getAll();
           },
-          setAll(cookiesToSet) {
+          setAll(cookiesToSet: any[]) {
             cookiesToSet.forEach(({ name, value }) =>
               request.cookies.set(name, value)
             );
