@@ -34,9 +34,9 @@ export default async function AdminUsersPage() {
       <div className="grid grid-cols-4 gap-4">
         {[
           { label: 'Total', value: users?.length ?? 0, color: 'text-white' },
-          { label: 'Active', value: users?.filter((u) => u.subscription_status === 'active').length ?? 0, color: 'text-emerald-400' },
-          { label: 'Inactive', value: users?.filter((u) => u.subscription_status === 'inactive').length ?? 0, color: 'text-surface-400' },
-          { label: 'Admins', value: users?.filter((u) => u.role === 'admin').length ?? 0, color: 'text-accent-400' },
+          { label: 'Active', value: users?.filter((u: { subscription_status: string }) => u.subscription_status === 'active').length ?? 0, color: 'text-emerald-400' },
+          { label: 'Inactive', value: users?.filter((u: { subscription_status: string }) => u.subscription_status === 'inactive').length ?? 0, color: 'text-surface-400' },
+          { label: 'Admins', value: users?.filter((u: { role: string }) => u.role === 'admin').length ?? 0, color: 'text-accent-400' },
         ].map((s) => (
           <div key={s.label} className="card-elevated rounded-xl p-4 text-center">
             <div className={`text-2xl font-black ${s.color}`}>{s.value}</div>
@@ -60,7 +60,7 @@ export default async function AdminUsersPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
-              {(users ?? []).map((u) => (
+              {(users ?? []).map((u: any) => (
                 <tr key={u.id} className="hover:bg-white/3 transition-colors duration-150">
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
