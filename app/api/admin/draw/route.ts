@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { createClient, createAdminClient } from '@/lib/supabase/server';
-import { generateRandomDraw, generateAlgorithmicDraw, countMatches, getMatchTier, calculatePrizePool } from '@/lib/utils';
+import { generateRandomDraw, generateAlgorithmicDraw, getMatchTier, calculatePrizePool } from '@/lib/utils';
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     }
 
     // Calculate pool (demo prices: monthly = £9, yearly = £79/12 ≈ £6.58/mo)
-    const totalRevenue = activeUsers.reduce((sum: number, u: any) => {
+    const totalRevenue = activeUsers.reduce((sum: number, u: { subscription_plan: string | null }) => {
       return sum + (u.subscription_plan === 'yearly' ? 79 / 12 : 9);
     }, 0);
     const pool = calculatePrizePool(totalRevenue);
@@ -40,30 +40,41 @@ export async function POST(req: Request) {
     // Get all scores for algorithmic mode
     let winningNumbers: number[];
 
+    const startDate = new Date(year, month - 1, 1).toISOString();
+    const endDate = new Date(year, month, 0, 23, 59, 59, 999).toISOString();
+
     if (logic === 'random') {
       winningNumbers = generateRandomDraw();
     } else {
-      const { data: allScores } = await admin.from('scores').select('score');
+      const { data: allScores } = await admin
+        .from('scores')
+        .select('score')
+        .gte('date_played', startDate)
+        .lte('date_played', endDate);
+        
       const scoreValues = (allScores ?? []).map((s) => s.score);
       winningNumbers = generateAlgorithmicDraw(scoreValues, logic);
     }
 
-    // Get all user scores for matching
+    // Get all user scores for matching (filtered to the draw's month)
     const { data: userScores } = await admin
       .from('scores')
       .select('user_id, score')
-      .in('user_id', activeUsers.map((u) => u.id));
+      .in('user_id', activeUsers.map((u) => u.id))
+      .gte('date_played', startDate)
+      .lte('date_played', endDate);
 
-    // Group scores by user
-    const userScoreMap: Record<string, number[]> = {};
+    // Group unique scores by user to prevent duplicate match exploits
+    const userScoreMap: Record<string, Set<number>> = {};
     for (const s of userScores ?? []) {
-      if (!userScoreMap[s.user_id]) userScoreMap[s.user_id] = [];
-      userScoreMap[s.user_id].push(s.score);
+      if (!userScoreMap[s.user_id]) userScoreMap[s.user_id] = new Set();
+      userScoreMap[s.user_id].add(s.score);
     }
 
     // Find winners
     const winners: { userId: string; matchedNumbers: number[]; tier: 3 | 4 | 5 }[] = [];
-    for (const [userId, scores] of Object.entries(userScoreMap)) {
+    for (const [userId, scoreSet] of Object.entries(userScoreMap)) {
+      const scores = Array.from(scoreSet);
       const matched = scores.filter((s) => winningNumbers.includes(s));
       const tier = getMatchTier(matched.length);
       if (tier) {
