@@ -12,18 +12,18 @@ export const SciFiPanel = ({
 }) => {
   return (
     <div
-      className={cn("relative overflow-hidden group", className)}
+      className={cn("relative overflow-hidden group min-h-fit", className)}
       style={{
         clipPath: "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)",
       }}
     >
-      {/* Outer Glowing Border Effect */}
+      {/* Outer Glowing Border Effect (Background) */}
       <div className="absolute inset-0 bg-gradient-to-br from-brand-500 via-brand-600/20 to-accent-500" />
       
       {/* Inner Metallic Surface */}
       <div
         className={cn(
-          "absolute inset-[1.5px] bg-surface-900 z-10 flex flex-col transition-all duration-300 group-hover:bg-surface-800",
+          "relative m-[1.5px] bg-surface-900 z-10 flex flex-col transition-all duration-300 group-hover:bg-surface-800 h-full",
           innerClassName
         )}
         style={{
@@ -43,7 +43,7 @@ export const SciFiPanel = ({
         <div className="absolute top-0 left-5 w-4 h-1 bg-brand-500/50" />
         <div className="absolute bottom-0 right-5 w-4 h-1 bg-accent-500/50" />
         
-        <div className="relative z-20 w-full h-full p-6">
+        <div className="relative z-20 p-6 flex flex-col h-full">
           {children}
         </div>
       </div>
