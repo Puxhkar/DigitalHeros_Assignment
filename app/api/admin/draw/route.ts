@@ -51,8 +51,8 @@ export async function POST(req: NextRequest) {
         .select('score')
         .gte('date_played', startDate)
         .lte('date_played', endDate);
-        
-      const scoreValues = (allScores ?? []).map((s) => s.score);
+
+      const scoreValues = (allScores ?? []).map((s: { score: any; }) => s.score);
       winningNumbers = generateAlgorithmicDraw(scoreValues, logic);
     }
 
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     const { data: userScores } = await admin
       .from('scores')
       .select('user_id, score')
-      .in('user_id', activeUsers.map((u) => u.id))
+      .in('user_id', activeUsers.map((u: { id: any; }) => u.id))
       .gte('date_played', startDate)
       .lte('date_played', endDate);
 
