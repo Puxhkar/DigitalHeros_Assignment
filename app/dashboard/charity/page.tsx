@@ -73,10 +73,10 @@ export default function DashboardCharityPage() {
           <div className="flex items-center justify-between text-sm">
             <span className="text-surface-400">Your monthly contribution</span>
             <span className="text-accent-400 font-black text-xl">
-              £{((9 * percentage) / 100).toFixed(2)}
+              ${((9 * percentage) / 100).toFixed(2)}
             </span>
           </div>
-          <p className="text-surface-600 text-xs mt-1">{percentage}% of £9 monthly plan</p>
+          <p className="text-surface-600 text-xs mt-1">{percentage}% of $9 monthly plan</p>
         </div>
       )}
 
@@ -112,7 +112,7 @@ export default function DashboardCharityPage() {
                     <span className="badge text-xs flex-shrink-0">{c.category}</span>
                   </div>
                   <p className="text-surface-500 text-xs mt-1 leading-relaxed line-clamp-2">{c.description}</p>
-                  <p className="text-emerald-400 text-xs mt-1.5">£{c.total_raised.toFixed(0)} raised total</p>
+                  <p className="text-emerald-400 text-xs mt-1.5">${c.total_raised.toFixed(0)} raised total</p>
                 </div>
               </button>
             ))}

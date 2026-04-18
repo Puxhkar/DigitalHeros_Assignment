@@ -11,21 +11,21 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'DigitalHeros - Subscribe. Score. Win. Give.',
-    template: '%s | DigitalHeros',
+    default: 'BirdiePay - Subscribe. Score. Win. Give.',
+    template: '%s | BirdiePay',
   },
   description:
     'A premium subscription platform where your golf scores enter you into monthly prize draws and contribute to life-changing charities. Compete. Win. Do good.',
   keywords: ['golf scores', 'charity', 'prize draw', 'stableford', 'monthly prizes', 'subscription'],
   openGraph: {
-    title: 'DigitalHeros - Subscribe. Score. Win. Give.',
+    title: 'BirdiePay - Subscribe. Score. Win. Give.',
     description:
       'A premium subscription platform where your golf scores enter you into monthly prize draws and contribute to life-changing charities.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DigitalHeros',
+    title: 'BirdiePay',
     description: 'Golf scores. Monthly draws. Charity impact.',
   },
 };

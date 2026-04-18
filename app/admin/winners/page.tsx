@@ -102,7 +102,7 @@ export default function AdminWinnersPage() {
 
               {/* Prize */}
               <div className="text-right">
-                <div className="text-xl font-black text-white">£{w.prize_amount?.toFixed(2)}</div>
+                <div className="text-xl font-black text-white">${w.prize_amount?.toFixed(2)}</div>
                 <span className={cn('px-2 py-0.5 rounded-full text-xs font-medium border', statusConfig[w.payout_status]?.color ?? '')}>
                   {statusConfig[w.payout_status]?.label}
                 </span>

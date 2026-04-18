@@ -3,6 +3,8 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { UserPlus, BarChart2, Gift, ArrowRight } from 'lucide-react';
+import { SciFiPanel } from '@/components/ui/SciFiPanel';
+import { MovingBorderButton } from '@/components/ui/MovingBorderButton';
 
 const steps = [
   {
@@ -90,21 +92,23 @@ export default function HowItWorks() {
                 <div className="hidden md:block absolute top-12 left-[calc(100%+0px)] w-full h-px bg-gradient-to-r from-white/20 to-transparent z-10" />
               )}
 
-              <div className="card h-full flex flex-col gap-5 group-hover:-translate-y-1 group-hover:border-white/20 transition-all duration-300">
-                {/* Step number */}
-                <div className="flex items-start justify-between">
-                  <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center shadow-glow flex-shrink-0`}>
-                    <step.icon className="w-6 h-6 text-white" />
+              <SciFiPanel className="h-full group-hover:-translate-y-2 transition-transform duration-400">
+                <div className="flex flex-col gap-5">
+                  {/* Step number */}
+                  <div className="flex items-start justify-between z-10 relative">
+                    <div className={`w-12 h-12 flex items-center justify-center flex-shrink-0 ${step.color.includes('brand') ? 'text-brand-400' : step.color.includes('accent') ? 'text-accent-400' : 'text-emerald-400'}`}>
+                      <step.icon className="w-8 h-8 drop-shadow-[0_0_8px_currentColor]" />
+                    </div>
+                    <span className="text-5xl font-mono font-black text-white/5 leading-none">{step.step}</span>
                   </div>
-                  <span className="text-5xl font-black text-white/5 leading-none">{step.step}</span>
-                </div>
 
-                {/* Content */}
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2 leading-snug">{step.title}</h3>
-                  <p className="text-surface-400 text-sm leading-relaxed">{step.description}</p>
+                  {/* Content */}
+                  <div className="z-10 relative">
+                    <h3 className="text-xl font-bold text-white mb-2 leading-snug">{step.title}</h3>
+                    <p className="text-surface-400 text-sm leading-relaxed">{step.description}</p>
+                  </div>
                 </div>
-              </div>
+              </SciFiPanel>
             </motion.div>
           ))}
         </motion.div>
@@ -117,9 +121,13 @@ export default function HowItWorks() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-center mt-14"
         >
-          <a href="/register" className="btn-primary text-base px-8 py-4 shadow-glow">
-            Start Your Journey
-            <ArrowRight className="w-5 h-5" />
+          <a href="/register">
+            <MovingBorderButton containerClassName="h-14" className="px-8 text-base shadow-glow">
+              <span className="flex items-center gap-2">
+                Start Your Journey
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1 duration-200" />
+              </span>
+            </MovingBorderButton>
           </a>
         </motion.div>
       </div>

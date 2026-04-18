@@ -18,7 +18,7 @@ export async function proxy(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
     if (user && (pathname === '/login' || pathname === '/register')) {
-      return NextResponse.redirect(new URL('/dashboard', request.url));
+      return NextResponse.redirect(new URL('/', request.url));
     }
     if (!user && (pathname.startsWith('/dashboard') || pathname.startsWith('/admin'))) {
       const redirectUrl = new URL('/login', request.url);
@@ -70,7 +70,7 @@ export async function proxy(request: NextRequest) {
     }
 
     if (user && (pathname === '/login' || pathname === '/register')) {
-      return NextResponse.redirect(new URL('/dashboard', request.url));
+      return NextResponse.redirect(new URL('/', request.url));
     }
   } catch (err) {
     console.error('Middleware auth error:', err);

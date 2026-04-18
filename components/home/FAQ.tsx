@@ -55,7 +55,7 @@ export default function FAQ() {
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-5xl font-black text-white mb-6"
           >
-            Curious about <span className="gradient-text">DigitalHeros?</span>
+            Curious about <span className="gradient-text">BirdiePay?</span>
           </motion.h2>
         </div>
 

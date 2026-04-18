@@ -10,7 +10,7 @@ import Pricing from '@/components/home/Pricing';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-surface-950">
+    <div className="min-h-screen" style={{ background: '#040911' }}>
       <Navbar />
       <main>
         <HeroSection />

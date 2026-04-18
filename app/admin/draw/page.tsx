@@ -163,16 +163,16 @@ export default function AdminDrawPage() {
 
               <div className="grid grid-cols-3 gap-3">
                 <div className="text-center p-3 rounded-xl bg-yellow-500/8 border border-yellow-500/20">
-                  <div className="text-lg font-bold text-yellow-400">£{result.draw.jackpot_amount.toFixed(0)}</div>
+                  <div className="text-lg font-bold text-yellow-400">${result.draw.jackpot_amount.toFixed(0)}</div>
                   <div className="text-xs text-surface-500">Jackpot pool</div>
                   {result.jackpotRollover > 0 && <div className="text-xs text-yellow-600 mt-0.5">→ Rolls over</div>}
                 </div>
                 <div className="text-center p-3 rounded-xl bg-brand-500/8 border border-brand-500/20">
-                  <div className="text-lg font-bold text-brand-400">£{result.draw.tier_two_amount.toFixed(0)}</div>
+                  <div className="text-lg font-bold text-brand-400">${result.draw.tier_two_amount.toFixed(0)}</div>
                   <div className="text-xs text-surface-500">Tier 2 pool</div>
                 </div>
                 <div className="text-center p-3 rounded-xl bg-accent-500/8 border border-accent-500/20">
-                  <div className="text-lg font-bold text-accent-400">£{result.draw.tier_three_amount.toFixed(0)}</div>
+                  <div className="text-lg font-bold text-accent-400">${result.draw.tier_three_amount.toFixed(0)}</div>
                   <div className="text-xs text-surface-500">Tier 3 pool</div>
                 </div>
               </div>
@@ -203,7 +203,7 @@ export default function AdminDrawPage() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-base font-black text-white">£{winner.prize.toFixed(2)}</div>
+                        <div className="text-base font-black text-white">${winner.prize.toFixed(2)}</div>
                         <div className="text-xs text-surface-500">Tier {winner.tier}</div>
                       </div>
                     </motion.div>

@@ -27,10 +27,10 @@ export default async function AdminPage() {
   const stats = [
     { label: 'Total Users', value: totalUsers, icon: Users, color: 'from-brand-500/20 to-brand-600/5 border-brand-500/25', iconColor: 'text-brand-400', sub: `${activeSubs} active` },
     { label: 'Active Subscriptions', value: activeSubs, icon: CreditCard, color: 'from-emerald-500/20 to-emerald-600/5 border-emerald-500/25', iconColor: 'text-emerald-400', sub: `${totalUsers > 0 ? Math.round((activeSubs/totalUsers)*100) : 0}% conversion` },
-    { label: 'Total Prize Pool', value: `£${totalPrizePool.toFixed(0)}`, icon: Trophy, color: 'from-yellow-500/20 to-yellow-600/5 border-yellow-500/25', iconColor: 'text-yellow-400', sub: `${totalWinners} total winners` },
-    { label: 'Charity Raised', value: `£${totalCharity.toFixed(0)}`, icon: Heart, color: 'from-accent-500/20 to-accent-600/5 border-accent-500/25', iconColor: 'text-accent-400', sub: 'Last 30 days' },
+    { label: 'Total Prize Pool', value: `$${totalPrizePool.toFixed(0)}`, icon: Trophy, color: 'from-yellow-500/20 to-yellow-600/5 border-yellow-500/25', iconColor: 'text-yellow-400', sub: `${totalWinners} total winners` },
+    { label: 'Charity Raised', value: `$${totalCharity.toFixed(0)}`, icon: Heart, color: 'from-accent-500/20 to-accent-600/5 border-accent-500/25', iconColor: 'text-accent-400', sub: 'Last 30 days' },
     { label: 'Pending Payouts', value: pendingPayouts, icon: DollarSign, color: 'from-orange-500/20 to-orange-600/5 border-orange-500/25', iconColor: 'text-orange-400', sub: 'Awaiting verification' },
-    { label: 'Monthly Revenue', value: `£${(activeSubs * 9).toFixed(0)}`, icon: TrendingUp, color: 'from-surface-700/30 to-surface-800/10 border-white/10', iconColor: 'text-surface-400', sub: 'Estimated (all monthly)' },
+    { label: 'Monthly Revenue', value: `$${(activeSubs * 9).toFixed(0)}`, icon: TrendingUp, color: 'from-surface-700/30 to-surface-800/10 border-white/10', iconColor: 'text-surface-400', sub: 'Estimated (all monthly)' },
   ];
 
   // Recent users

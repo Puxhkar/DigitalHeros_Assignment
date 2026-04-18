@@ -8,20 +8,20 @@
   --font-inter: 'Inter', system-ui, sans-serif;
 
   /* Brand colors */
-  --brand-primary: #6366f1;
-  --brand-secondary: #d946ef;
-  --brand-emerald: #10b981;
+  --brand-primary: #00e0ff;
+  --brand-secondary: #ffbe1a;
+  --brand-emerald: #00cc88;
 
   /* Surface */
-  --bg-base: #0f172a;
-  --bg-card: #1e293b;
-  --bg-card-hover: #263347;
-  --bg-subtle: #0d1117;
+  --bg-base: #040911;
+  --bg-card: #08111e;
+  --bg-card-hover: #11233e;
+  --bg-subtle: #02050a;
 
   /* Text */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #475569;
+  --text-primary: #e6edf5;
+  --text-secondary: #5380b8;
+  --text-muted: #264f86;
 
   /* Border */
   --border-default: rgba(255, 255, 255, 0.08);
@@ -46,7 +46,7 @@ html {
 
 body {
   font-family: var(--font-inter);
-  background-color: #0f172a;
+  background-color: var(--bg-base);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
@@ -144,23 +144,45 @@ body {
   100% { background-position: 200% 0; }
 }
 
-/* ─── Grid pattern ───────────────────────────── */
+/* ─── Grid pattern (Modernized Cyan Grid) ───── */
 .grid-pattern {
   background-image:
-    linear-gradient(rgba(99, 102, 241, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
-  background-size: 50px 50px;
+    linear-gradient(rgba(0, 224, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 224, 255, 0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
-/* ─── Dot pattern ────────────────────────────── */
+/* ─── Cyber Perspective Floor ────────────────── */
+.cyber-floor {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to top, rgba(0, 224, 255, 0.15) 0%, transparent 40%),
+    linear-gradient(to right, rgba(0, 224, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 224, 255, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 100%, 100% 20px;
+  transform: perspective(600px) rotateX(60deg) translateY(-100px) scale(3);
+  transform-origin: center top;
+  pointer-events: none;
+}
+
+/* ─── Hexagon pattern ────────────────────────── */
+.hex-pattern {
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='69.28203230275509' viewBox='0 0 40 69.28203230275509' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%2300e0ff' stroke-width='1' stroke-opacity='0.08' fill='none' fill-rule='evenodd'%3E%3Cpath d='M40 17.32050807568877l-20 11.547005383792518L0 17.32050807568877V-5.773502691896257l20-11.547005383792519L40-5.773502691896257V17.32050807568877zM20 51.96152422706631l-20 11.547005383792519v-23.094010767585038l20-11.547005383792518l20 11.547005383792518v23.094010767585038L20 51.96152422706631z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ─── Dot pattern (Overrides) ───────────────── */
 .dot-pattern {
-  background-image: radial-gradient(circle, rgba(99, 102, 241, 0.15) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(0, 224, 255, 0.15) 1px, transparent 1px);
   background-size: 30px 30px;
 }
 
 /* ─── Utility overrides ──────────────────────── */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
 
 /* ─── Button base styles ─────────────────────── */
 .btn-primary {
@@ -210,7 +232,7 @@ body {
 
 /* ─── Section spacing ────────────────────────── */
 .section {
-  @apply py-20 md:py-32;
+  @apply py-14 md:py-20;
 }
 
 .container-custom {

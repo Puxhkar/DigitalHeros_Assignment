@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'No active subscribers' }, { status: 400 });
     }
 
-    // Calculate pool (demo prices: monthly = £9, yearly = £79/12 ≈ £6.58/mo)
+    // Calculate pool (demo prices: monthly = $9, yearly = $79/12 ≈ $6.58/mo)
     const totalRevenue = activeUsers.reduce((sum: number, u: { subscription_plan: string | null }) => {
       return sum + (u.subscription_plan === 'yearly' ? 79 / 12 : 9);
     }, 0);

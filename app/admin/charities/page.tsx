@@ -194,7 +194,7 @@ export default function AdminCharitiesPage() {
                 </div>
                 <p className="text-surface-400 text-xs leading-relaxed line-clamp-2">{c.description}</p>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-surface-500 flex items-center gap-1"><Heart className="w-3 h-3 text-accent-400" />£{c.total_raised.toFixed(0)} raised</span>
+                  <span className="text-surface-500 flex items-center gap-1"><Heart className="w-3 h-3 text-accent-400" />${c.total_raised.toFixed(0)} raised</span>
                   {c.website_url && <a href={c.website_url} target="_blank" rel="noreferrer" className="text-brand-400 hover:underline flex items-center gap-1"><Globe className="w-3 h-3" />Website</a>}
                 </div>
               </motion.div>

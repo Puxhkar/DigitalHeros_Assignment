@@ -5,10 +5,10 @@ import { useRef } from 'react';
 import { Heart, TrendingUp, Globe, Shield } from 'lucide-react';
 
 const impactStats = [
-  { label: 'Total Donated', value: '£42,180', delta: '+12% this month' },
+  { label: 'Total Donated', value: '$42,180', delta: '+12% this month' },
   { label: 'Charities Supported', value: '6', delta: 'Growing monthly' },
   { label: 'Lives Impacted', value: '1,200+', delta: 'Across 18 countries' },
-  { label: 'Avg. Contribution', value: '£14.80', delta: 'Per subscriber/month' },
+  { label: 'Avg. Contribution', value: '$14.80', delta: 'Per subscriber/month' },
 ];
 
 const pillars = [
@@ -119,7 +119,7 @@ export default function CharityImpact() {
               <div className="mt-8">
                 <div className="flex justify-between text-xs mb-2">
                   <span className="text-surface-400">Monthly charity goal</span>
-                  <span className="text-white font-semibold">£5,000 / £6,000</span>
+                  <span className="text-white font-semibold">$5,000 / $6,000</span>
                 </div>
                 <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
                   <motion.div

@@ -128,15 +128,15 @@ export default async function DrawPage() {
               <DrawNumbers numbers={latestDraw.winning_numbers} />
               <div className="mt-5 grid grid-cols-3 gap-3">
                 <div className="text-center p-3 rounded-xl bg-yellow-500/8 border border-yellow-500/20">
-                  <div className="text-sm font-bold text-yellow-400">{formatCurrency(latestDraw.jackpot_amount, 'GBP').replace('$', '£')}</div>
+                  <div className="text-sm font-bold text-yellow-400">{formatCurrency(latestDraw.jackpot_amount, 'USD').replace('$', '$')}</div>
                   <div className="text-xs text-surface-500 mt-0.5">Jackpot pool</div>
                 </div>
                 <div className="text-center p-3 rounded-xl bg-brand-500/8 border border-brand-500/20">
-                  <div className="text-sm font-bold text-brand-400">{formatCurrency(latestDraw.tier_two_amount, 'GBP').replace('$', '£')}</div>
+                  <div className="text-sm font-bold text-brand-400">{formatCurrency(latestDraw.tier_two_amount, 'USD').replace('$', '$')}</div>
                   <div className="text-xs text-surface-500 mt-0.5">Tier 2 pool</div>
                 </div>
                 <div className="text-center p-3 rounded-xl bg-accent-500/8 border border-accent-500/20">
-                  <div className="text-sm font-bold text-accent-400">{formatCurrency(latestDraw.tier_three_amount, 'GBP').replace('$', '£')}</div>
+                  <div className="text-sm font-bold text-accent-400">{formatCurrency(latestDraw.tier_three_amount, 'USD').replace('$', '$')}</div>
                   <div className="text-xs text-surface-500 mt-0.5">Tier 3 pool</div>
                 </div>
               </div>
@@ -176,7 +176,7 @@ export default async function DrawPage() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-xl font-black text-white">{formatCurrency(win.prize_amount, 'GBP').replace('$', '£')}</div>
+                  <div className="text-xl font-black text-white">{formatCurrency(win.prize_amount, 'USD').replace('$', '$')}</div>
                   <div className={`text-xs mt-0.5 ${win.payout_status === 'paid' ? 'text-emerald-400' : win.payout_status === 'approved' ? 'text-brand-400' : win.payout_status === 'rejected' ? 'text-red-400' : 'text-yellow-400'}`}>
                     {win.payout_status === 'paid' ? '✓ Paid' : win.payout_status === 'approved' ? 'Processing' : win.payout_status === 'rejected' ? '✗ Rejected' : 'Pending verification'}
                   </div>
@@ -201,7 +201,7 @@ export default async function DrawPage() {
                   ))}
                 </div>
                 <span className="text-surface-500 text-xs">{draw.total_participants} players</span>
-                <span className="text-brand-400 font-semibold text-xs">{formatCurrency(draw.pool_amount, 'GBP').replace('$', '£')}</span>
+                <span className="text-brand-400 font-semibold text-xs">{formatCurrency(draw.pool_amount, 'USD').replace('$', '$')}</span>
               </div>
             ))}
           </div>

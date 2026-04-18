@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
+import { InfiniteMovingCards } from '@/components/ui/InfiniteMovingCards';
 
 const testimonials = [
   {
@@ -9,7 +10,7 @@ const testimonials = [
     handle: '@jwhitfield_golf',
     avatar: 'JW',
     content:
-      'I never expected to win the jackpot in month two, but here we are. £4,200 landed in my account and I know 12% of my sub went to Save the Children. This platform is a no-brainer.',
+      'I never expected to win the jackpot in month two, but here we are. $4,200 landed in my account and I know 12% of my sub went to Save the Children. This platform is a no-brainer.',
     rating: 5,
     tier: 'Jackpot Winner',
     color: 'from-brand-500 to-brand-600',
@@ -70,46 +71,17 @@ export default function Testimonials() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-5">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="card flex flex-col gap-4 group hover:border-white/20 hover:-translate-y-1 transition-all duration-300"
-            >
-              {/* Quote icon */}
-              <Quote className="w-8 h-8 text-brand-500/40" />
-
-              {/* Stars */}
-              <div className="flex items-center gap-1">
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-brand-400 text-brand-400" />
-                ))}
-              </div>
-
-              {/* Content */}
-              <p className="text-surface-200 text-sm leading-relaxed flex-1">
-                &ldquo;{t.content}&rdquo;
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${t.color} flex items-center justify-center text-white text-sm font-bold`}>
-                    {t.avatar}
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-white">{t.name}</div>
-                    <div className="text-surface-500 text-xs">{t.handle}</div>
-                  </div>
-                </div>
-                <span className="badge text-xs">{t.tier}</span>
-              </div>
-            </motion.div>
-          ))}
+        <div className="flex flex-col items-center justify-center w-full relative z-20">
+          <InfiniteMovingCards
+            items={testimonials.map(t => ({
+              quote: t.content,
+              name: t.name,
+              title: t.tier,
+              rating: t.rating
+            }))}
+            direction="left"
+            speed="slow"
+          />
         </div>
       </div>
     </section>
