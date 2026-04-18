@@ -19,7 +19,7 @@ export default function DashboardCharityPage() {
     const init = async () => {
       const [charRes, profileRes] = await Promise.all([
         supabase.from('charities').select('*').eq('is_active', true).order('name'),
-        supabase.auth.getUser().then(({ data: { user } }) =>
+        supabase.auth.getUser().then(({ data: { user } }: { data: { user: any } }) =>
           user ? supabase.from('profiles').select('charity_id, charity_percentage').eq('id', user.id).single() : null
         ),
       ]);

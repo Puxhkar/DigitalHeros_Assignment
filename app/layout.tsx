@@ -11,14 +11,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'DigitalHeros – Subscribe. Score. Win. Give.',
+    default: 'DigitalHeros - Subscribe. Score. Win. Give.',
     template: '%s | DigitalHeros',
   },
   description:
     'A premium subscription platform where your golf scores enter you into monthly prize draws and contribute to life-changing charities. Compete. Win. Do good.',
   keywords: ['golf scores', 'charity', 'prize draw', 'stableford', 'monthly prizes', 'subscription'],
   openGraph: {
-    title: 'DigitalHeros – Subscribe. Score. Win. Give.',
+    title: 'DigitalHeros - Subscribe. Score. Win. Give.',
     description:
       'A premium subscription platform where your golf scores enter you into monthly prize draws and contribute to life-changing charities.',
     type: 'website',

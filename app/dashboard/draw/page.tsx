@@ -3,8 +3,9 @@ import { redirect } from 'next/navigation';
 import { Trophy, Clock, Users, Zap, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { formatCurrency, formatDate } from '@/lib/utils';
 import type { Draw, Winner } from '@/types/database';
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Key } from 'react';
 
-const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 function DrawNumbers({ numbers }: { numbers: number[] }) {
   return (
@@ -38,7 +39,7 @@ export default async function DrawPage() {
     supabase.from('winners').select('*, draws(month, year)').eq('user_id', user.id).order('created_at', { ascending: false }),
   ]);
 
-  const userScores = (scoresRes.data ?? []).map((s) => s.score);
+  const userScores = (scoresRes.data ?? []).map((s: { score: any; }) => s.score);
   const draws: Draw[] = drawsRes.data ?? [];
   const wins: (Winner & { draws: { month: number; year: number } | null })[] = (winsRes.data as any) ?? [];
 
@@ -77,7 +78,7 @@ export default async function DrawPage() {
         </div>
         {isEligible && (
           <div className="ml-auto flex flex-wrap gap-2">
-            {userScores.map((n, i) => (
+            {userScores.map((n: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined, i: Key | null | undefined) => (
               <div key={i} className="w-9 h-9 rounded-xl bg-brand-500/20 border border-brand-500/30 flex items-center justify-center text-brand-300 font-bold text-xs">
                 {n}
               </div>

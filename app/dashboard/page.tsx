@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { Trophy, Heart, CreditCard, BarChart2, ArrowRight, TrendingUp, Calendar, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { formatDate, formatCurrency } from '@/lib/utils';
+import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from 'react';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,7 +33,7 @@ export default async function DashboardPage() {
   const { profile, scores, latestDraw, recentWins } = await getDashboardData(user.id);
 
   const isActive = profile?.subscription_status === 'active';
-  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   const statCards = [
     {
@@ -138,7 +139,7 @@ export default async function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-2.5">
-              {scores.map((score, i) => (
+              {scores.map((score: { id: Key | null | undefined; date_played: string | Date; score: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }, i: number) => (
                 <div key={score.id} className="flex items-center justify-between py-2.5 px-3.5 rounded-xl bg-white/5 border border-white/5 hover:bg-white/5 transition-all duration-200">
                   <div className="flex items-center gap-3">
                     <div className="w-7 h-7 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-400 font-bold text-xs">
@@ -187,7 +188,7 @@ export default async function DashboardPage() {
               </div>
 
               {recentWins.length > 0 ? (
-                recentWins.map((win) => (
+                recentWins.map((win: { id: Key | null | undefined; match_tier: number; matched_numbers: string | any[]; prize_amount: number; }) => (
                   <div key={win.id} className="flex items-center justify-between p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 mb-2">
                     <div className="flex items-center gap-2">
                       <span className="text-lg">🏆</span>
